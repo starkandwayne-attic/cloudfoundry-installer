@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Cloudfoundry::Installer::VERSION
   gem.authors       = ["Dr Nic Williams"]
   gem.email         = ["drnicwilliams@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Super simple installer for CloudFoundry on your own servers}
+  gem.summary       = %q{Super simple installer for CloudFoundry on your own servers}
+  gem.homepage      = "https://github.com/StarkAndWayne/cloudfoundry-installer"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
