@@ -2,6 +2,8 @@
 
 WARNING: This README currently lives in advance of the features of the installer itself. This is the README that I want to be true when the installer is initially publicly announced. The project is being developed publicly, prior to public announcement, and your participation and testing is appreciated.
 
+## What is CloudFoundry?
+
 CloudFoundry is a platform-as-a-service (PaaS, pronounced 'paz' but with a flavour of 's' to it) for running your applications and services that you can run on one server or 1000. 
 
 Before running this installer on your own infrastructure, you can optionally try CloudFoundry via a publicly hosted service.  [cloudfoundry.com](http://cloudfoundry.com) is the publicly hosted version by VMWare, the creators and core developers of CloudFoundry.
@@ -20,13 +22,27 @@ Once you have CloudFoundry installed and running (this project!) every user can 
 
 Your users will be able to choose from a wide range of database and messaging services, including PostgreSQL, Redis, AMPQ, MongoDB, MySQL, and Neo4j. You may or may not want to include all of these services in your own running version of CloudFoundry as you will need to provide the DBA assistance. It is recommended to have a Support Service Agreement with Stark & Wayne or another CloudFoundry specialist if you want to run databases/services that you don't have first class competency managing.
 
-### Why not vcap's dev_setup?
+## About the installer
+
+This project is a combination of the simple command-line chef-based `dev_setup` tool originally released in 2011 and the modern, actively maintained cf-release for BOSH. It is simple to use, does not require BOSH to be installed and running, and yet is continually up-to-date with the latest open source releases from the CloudFoundry core team.
+
+**Help?** Whether you want to start with this CloudFoundry Installer, or with a full BOSH deployment, or migrate from the former to the latter at a future time, you can always request assistance from us at Stark & Wayne or another CloudFoundry consultancy.
+
+### Why not use vcap's dev_setup to install CloudFoundry?
 
 When CloudFoundry was first released in 2011, it came with a script called `dev_setup` and a Chef cookbook to install CloudFoundry. Unfortunately for `dev_setup` users, the Chef cookbooks were not maintained in parallel with the new runtimes and services that CloudFoundry supported.
 
 It is likely that `dev_setup` will be deprecated in future as it is completely distinct from the new description for how to run CloudFoundry - using BOSH.
 
-In April 2012, the canonical description for how VMWare
+In April 2012, VMWare released their internal deployment system for deploying [CloudFoundry.com](http://cloudfoundry.com), called BOSH. They also released cf-release, a BOSH release for CloudFoundry. Importantly, these two projects are actively developed by all VMWare staff working on CloudFoundry and represent the leading edge of development of [cloudfoundry.com](http://cloudfoundry.com).
+
+### Why not use BOSH to install CloudFoundry?
+
+BOSH is a stateful, running system. It can manage the entire lifecycle of a deployment including the provisioning & destruction of virtual machines, attached disks, internal DNS, and associations with external networking (pre-provisioned static IP addresses). It is accessed via a CLI or API, and it proactively watches all the jobs of a running deployment (for example, Cloud Foundry) to ensure that the infrastructure is running as expected. It is huge and wonderful and actively developed by half a dozen VMWare engineers.
+
+The initial author of the CloudFoundry Installer, Dr Nic Williams, is a huge fan of BOSH and has given many presentations on it. It was with his knowledge of BOSH and cf-release that he was able to create CloudFoundry Installer without requiring you to have BOSH actually running.
+
+This CloudFoundry Installer does use BOSH without requiring you to have BOSH installed and running. It uses the source code for BOSH and the original (or extended) cf-release to create the same net result - you will have CloudFoundry running on one or more servers within your datacenter or cloud.
 
 ## Requirements
 
@@ -59,13 +75,21 @@ The latter is the more flexible, supportable method. The former exists because i
 ### Local installer
 
 Login to the server or virtual machine that you will run
+
 ```
 gem install cloudfoundry-installer
-cloudfoundry-installer
+cloudfoundry-installer --local
 ```
 
 ### Remote installer [recommended]
 
+The recommended use of the installer is to target one or more servers from a connected remote machine or laptop.
+
+```
+gem install cloudfoundry-installer
+cloudfoundry-installer --all 1.2.3.4
+cloudfoundry-installer --main 1.2.3.4 --dea 1.3.1.1 1.3.1.2 --services 1.4.1.1
+```
 
 
 ## Contributing
