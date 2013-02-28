@@ -1,6 +1,6 @@
 # CloudFoundry Installer
 
-WARNING: This README currently lives in advance of the features of the installer itself. This is the README that I want to be true when the installer is initially publicly announced. The project is being developed publicly, prior to public announcement, and your participation and testing is appreciated.
+WARNING: This README was written before I wrote any code. It turns out that I developed two other projects instead of this one to solve the problem of installing Cloud Foundry. Please see https://github.com/StarkAndWayne/bosh-cloudfoundry#readme for an easy-to-follow tutorial for installing Cloud Foundry.
 
 ## What is CloudFoundry?
 
